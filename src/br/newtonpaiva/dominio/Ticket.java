@@ -14,37 +14,21 @@ public class Ticket {
         this.veiculo = veiculo;
     }
 
-    public Object fechar() {
+    public Object fechar(Calcular calcular) {
         this.fim = LocalDateTime.now();
 
-        long horas = ChronoUnit.HOURS.between(inicio, fim);
-        long dias = ChronoUnit.DAYS.between(inicio, fim);
-        long meses = ChronoUnit.MONTHS.between(inicio, fim);
+        return calcular.execute();
+    }
 
-        //logica
-        if (horas < 12) {
-            return new BigDecimal(horas * 10);
-        } else if (dias < 15) {
-            if (dias == 0)
-                dias = 1;
-            return new BigDecimal(dias * 40);
-        } else {
-            if (meses == 0) {
-                meses = 1;
-                return new BigDecimal(meses * 200);
-            }
-        }
+    public LocalDateTime getInicio() {
+        return inicio;
+    }
 
-        public LocalDateTime getInicio () {
-            return inicio;
-        }
+    public LocalDateTime getFim() {
+        return fim;
+    }
 
-        public LocalDateTime getFim () {
-            return fim;
-        }
-
-        public Veiculo getVeiculo () {
-            return veiculo;
-        }
+    public Veiculo getVeiculo() {
+        return veiculo;
     }
 }
